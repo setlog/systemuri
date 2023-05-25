@@ -4,7 +4,6 @@ package systemuri
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -49,7 +48,24 @@ MimeType=x-scheme-handler/%s;
 	return nil
 }
 
-func unregisterURLHandler(applicationPath string) error {
-	log.Println("Registering URL handler on linux is not implemented")
+func unregisterURLHandler(schema string) error {
+	usr, err := user.Current()
+	if err != nil {
+		return fmt.Errorf("failed to get current user: %w", err)
+	}
+
+	xdgDataHome := os.Getenv("XDG_DATA_HOME")
+	if xdgDataHome == "" {
+		xdgDataHome = filepath.Join(usr.HomeDir, ".local", "share")
+	}
+
+	applicationsDir := filepath.Join(xdgDataHome, "applications")
+	desktopFilePath := filepath.Join(applicationsDir, fmt.Sprintf("%s-url-handler.desktop", schema))
+
+	err = os.Remove(desktopFilePath)
+	if err != nil {
+		return fmt.Errorf("failed to remove .desktop file: %w", err)
+	}
+
 	return nil
 }
