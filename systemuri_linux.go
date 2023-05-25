@@ -10,24 +10,20 @@ import (
 	"path/filepath"
 )
 
-func registerURLHandler(name string, schema string, applicationPath string, noDisplay bool) error {
+func registerURLHandler(name string, schema string, applicationPath string) error {
 	if applicationPath == "" {
 		return fmt.Errorf("applicationPath is empty")
 	}
 
-	noDisplayString := "false"
-	if noDisplay {
-		noDisplayString = "true"
-	}
 	desktopFileContent := fmt.Sprintf(`[Desktop Entry]
 Version=1.0
 Name=%s
 Exec=%s %%u
 Terminal=false
 Type=Application
-NoDisplay=%s
+NoDisplay=true
 MimeType=x-scheme-handler/%s;
-`, name, filepath.Clean(applicationPath), noDisplayString, schema)
+`, name, filepath.Clean(applicationPath), schema)
 
 	usr, err := user.Current()
 	if err != nil {
