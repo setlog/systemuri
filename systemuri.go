@@ -1,7 +1,8 @@
 package systemuri
 
 // RegisterURLHandler registers a custom URL handler for the specified schema and application.
-func RegisterURLHandler(name string, schema string, applicationPath string) error {
+// noDisplay is only supported by Linux
+func RegisterURLHandler(name string, schema string, applicationPath string, noDisplay bool) error {
 	return registerURLHandler(name, schema, applicationPath)
 }
 
