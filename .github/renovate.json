@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["golang.org/x/net", "golang.org/x/sys"],
+      "extends": ["schedule:monthly"],
+      "automerge": true
+    }
+  ],
+  "rebaseWhen": "behind-base-branch"
+}
