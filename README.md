@@ -1,6 +1,6 @@
 # systemuri
 
-A go library to register custom URL schema in the operating system.
+A go library to register custom URL schema in the operating system. Inspired by https://github.com/Vrixyz/system_uri
 
 ## About
 
