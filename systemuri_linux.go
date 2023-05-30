@@ -25,7 +25,7 @@ Terminal=false
 Type=Application
 NoDisplay=true
 MimeType=x-scheme-handler/%s;
-`, name, filepath.Clean(applicationPath), argumentsPattern, scheme)
+`, name, exec, scheme)
 
 	usr, err := user.Current()
 	if err != nil {
