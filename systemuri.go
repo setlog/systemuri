@@ -1,10 +1,10 @@
 package systemuri
 
-// RegisterURLHandler registers a custom URL handler for the specified schema and application.
-func RegisterURLHandler(name string, schema string, applicationPath string) error {
-	return registerURLHandler(name, schema, applicationPath)
+// RegisterURLHandler registers a custom URL handler for the specified schema and application. argumentsPattern the %u is replaced by the system-specific placeholder
+func RegisterURLHandler(name string, scheme string, applicationPath string, argumentsPattern string) error {
+	return registerURLHandler(name, scheme, applicationPath, argumentsPattern)
 }
 
-func UnregisterURLHandler(schema string) error {
-	return unregisterURLHandler(applicationPath)
+func UnregisterURLHandler(scheme string) error {
+	return unregisterURLHandler(scheme)
 }

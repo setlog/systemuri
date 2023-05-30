@@ -7,22 +7,25 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
+	"strings"
 )
 
-func registerURLHandler(name string, schema string, applicationPath string) error {
+func registerURLHandler(name string, scheme string, applicationPath string, argumentsPattern string) error {
 	if applicationPath == "" {
 		return fmt.Errorf("applicationPath is empty")
 	}
 
+	exec := applicationPath + " " + strings.Replace(argumentsPattern, "%s", "%u", -1)
+
 	desktopFileContent := fmt.Sprintf(`[Desktop Entry]
 Version=1.0
 Name=%s
-Exec=%s %%u
+Exec=%s
 Terminal=false
 Type=Application
 NoDisplay=true
 MimeType=x-scheme-handler/%s;
-`, name, filepath.Clean(applicationPath), schema)
+`, name, filepath.Clean(applicationPath), argumentsPattern, scheme)
 
 	usr, err := user.Current()
 	if err != nil {
@@ -40,7 +43,7 @@ MimeType=x-scheme-handler/%s;
 		return fmt.Errorf("failed to create applications directory: %w", err)
 	}
 
-	desktopFilePath := filepath.Join(applicationsDir, fmt.Sprintf("%s-url-handler.desktop", schema))
+	desktopFilePath := filepath.Join(applicationsDir, fmt.Sprintf("%s-url-handler.desktop", scheme))
 	err = os.WriteFile(desktopFilePath, []byte(desktopFileContent), 0644)
 	if err != nil {
 		return fmt.Errorf("failed to create .desktop file: %w", err)
@@ -48,7 +51,7 @@ MimeType=x-scheme-handler/%s;
 	return nil
 }
 
-func unregisterURLHandler(schema string) error {
+func unregisterURLHandler(scheme string) error {
 	usr, err := user.Current()
 	if err != nil {
 		return fmt.Errorf("failed to get current user: %w", err)
@@ -60,7 +63,7 @@ func unregisterURLHandler(schema string) error {
 	}
 
 	applicationsDir := filepath.Join(xdgDataHome, "applications")
-	desktopFilePath := filepath.Join(applicationsDir, fmt.Sprintf("%s-url-handler.desktop", schema))
+	desktopFilePath := filepath.Join(applicationsDir, fmt.Sprintf("%s-url-handler.desktop", scheme))
 
 	err = os.Remove(desktopFilePath)
 	if err != nil {
