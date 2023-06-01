@@ -13,6 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// TODO use https://pkg.go.dev/github.com/go-git/go-billy to mock filesystem?
 func TestRegisterURLHandler(t *testing.T) {
 	testCases := []struct {
 		name            string
@@ -36,7 +37,7 @@ func TestRegisterURLHandler(t *testing.T) {
 
 	for _, testcase := range testCases {
 		t.Run(testcase.name, func(t *testing.T) {
-			err := registerURLHandler(testcase.name, testcase.schema, testcase.applicationPath)
+			err := registerURLHandler(testcase.name, testcase.schema, testcase.applicationPath, "--extra-env\"TEST=%s\"")
 			if testcase.wantErr {
 				assert.Error(t, err)
 			} else {
