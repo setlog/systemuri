@@ -4,6 +4,7 @@ package systemuri
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -70,5 +71,10 @@ func unregisterURLHandler(scheme string) error {
 		return fmt.Errorf("failed to remove .desktop file: %w", err)
 	}
 
+	return nil
+}
+
+func unregisterURLHandlerByPath(applicationPath string) error {
+	log.Println("Not yet implemented")
 	return nil
 }

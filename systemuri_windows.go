@@ -12,6 +12,16 @@ func registerURLHandler(name string, scheme string, applicationPath string, argu
 	return nil
 }
 
+func unregisterURLHandler(scheme string) error {
+	log.Println("Not yet implemented")
+	return nil
+}
+
+func unregisterURLHandlerByPath(applicationPath string) error {
+	log.Println("Not yet implemented")
+	return nil
+}
+
 //import (
 //"fmt"
 //"golang.org/x/sys/windows/registry"

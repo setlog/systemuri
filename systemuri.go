@@ -5,6 +5,12 @@ func RegisterURLHandler(name string, scheme string, applicationPath string, argu
 	return registerURLHandler(name, scheme, applicationPath, argumentsPattern)
 }
 
+// UnregisterURLHandler removes all registered entries based on the scheme
 func UnregisterURLHandler(scheme string) error {
 	return unregisterURLHandler(scheme)
+}
+
+// UnregisterURLHandlerByPath removes all registered entries based on the application path
+func UnregisterURLHandlerByPath(applicationPath string) error {
+	return unregisterURLHandlerByPath(applicationPath)
 }

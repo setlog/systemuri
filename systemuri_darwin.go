@@ -13,7 +13,12 @@ func registerURLHandler(name string, scheme string, applicationPath string, argu
 }
 
 func unregisterURLHandler(applicationPath string) error {
-	// Implement macOS registration logic
-	log.Println("Registering URL handler on macOS is not implemented")
+	// Implement macOS unregistration logic
+	log.Println("Not yet implemented")
+	return nil
+}
+
+func unregisterURLHandlerByPath(applicationPath string) error {
+	log.Println("Not yet implemented")
 	return nil
 }
