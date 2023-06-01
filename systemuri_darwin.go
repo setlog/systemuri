@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-func registerURLHandler(schema, applicationPath string) error {
+func registerURLHandler(name string, scheme string, applicationPath string, argumentsPattern string) error {
 	// Implement macOS registration logic
 	log.Println("Registering URL handler on macOS is not implemented")
 	return nil
