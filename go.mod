@@ -2,7 +2,7 @@ module github.com/setlog/systemuri
 
 require (
 	github.com/stretchr/testify v1.8.3
-	golang.org/x/sys v0.8.0
+	golang.org/x/sys v0.18.0
 )
 
 require (
