@@ -2,7 +2,7 @@ module github.com/setlog/systemuri
 
 require (
 	github.com/stretchr/testify v1.8.3
-	golang.org/x/sys v0.8.0
+	golang.org/x/sys v0.47.0
 )
 
 require (
@@ -11,4 +11,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-go 1.17
+go 1.25.0
